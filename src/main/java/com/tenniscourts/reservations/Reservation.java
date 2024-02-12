@@ -3,9 +3,7 @@ package com.tenniscourts.reservations;
 import com.tenniscourts.config.persistence.BaseEntity;
 import com.tenniscourts.guests.Guest;
 import com.tenniscourts.schedules.Schedule;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,10 +12,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 import java.math.BigDecimal;
 
 
@@ -36,18 +30,25 @@ public class Reservation extends BaseEntity {
     private Long id;
 
 
-    @OneToOne
+
+    @ManyToOne
+    @JoinColumn(name = "GUEST_ID", referencedColumnName = "id")
     private Guest guest;
 
     @ManyToOne
+    @JoinColumn(name="schedule_id",referencedColumnName = "id")
     @NotNull
     private Schedule schedule;
 
     @NotNull
-    private BigDecimal prince;
+    private BigDecimal price;
 
     @NotNull
     private ReservationStatusEnum reservationStatus = ReservationStatusEnum.READY_TO_PLAY;
 
     private BigDecimal refundValue;
+
+    @NotNull
+    private BigDecimal deposit;
+
 }

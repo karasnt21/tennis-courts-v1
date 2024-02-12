@@ -1,6 +1,10 @@
 package com.tenniscourts.reservations;
 
+import java.math.BigDecimal;
+
+import com.tenniscourts.guests.GuestDTO;
 import com.tenniscourts.schedules.ScheduleDTO;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,8 +12,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,13 +25,18 @@ public class ReservationDTO {
 
     private ScheduleDTO schedule;
 
+    private GuestDTO guest;
+
     private String reservationStatus;
 
     private ReservationDTO previousReservation;
 
     private BigDecimal refundValue;
 
-    private BigDecimal value;
+    private BigDecimal price;
+
+    private BigDecimal deposit;
+
 
     @NotNull
     private Long scheduledId;

@@ -3,13 +3,15 @@ package com.tenniscourts.schedules;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tenniscourts.tenniscourts.TennisCourtDTO;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class ScheduleDTO {
 
     private Long id;

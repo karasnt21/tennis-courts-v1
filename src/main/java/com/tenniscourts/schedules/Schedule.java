@@ -3,14 +3,7 @@ package com.tenniscourts.schedules;
 import com.tenniscourts.config.persistence.BaseEntity;
 import com.tenniscourts.reservations.Reservation;
 import com.tenniscourts.tenniscourts.TennisCourt;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,7 +42,7 @@ public class Schedule extends BaseEntity {
     @NotNull
     private LocalDateTime endDateTime;
 
-    @OneToMany
+    @OneToMany(mappedBy = "schedule",cascade = CascadeType.ALL)
     private List<Reservation> reservations;
 
     public void addReservation(Reservation reservation) {
